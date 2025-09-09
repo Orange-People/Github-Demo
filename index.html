@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Deep Dive - Complete Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">
+                <i class="fab fa-github"></i>
+                GitHub Deep Dive
+            </h1>
+            <p class="hero-subtitle">Complete Guide to Version Control, Collaboration, and Project Management</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="repos-count">0</span>
+                    <span class="stat-label">Repositories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="commits-count">0</span>
+                    <span class="stat-label">Commits</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="collaborators-count">0</span>
+                    <span class="stat-label">Collaborators</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#overview" class="nav-link active">Overview</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#workflow" class="nav-link">Workflow</a></li>
+                <li><a href="#demo" class="nav-link">Live Demo</a></li>
+                <li><a href="#commands" class="nav-link">Git Commands</a></li>
+                <li><a href="#best-practices" class="nav-link">Best Practices</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title">What is GitHub?</h2>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3>Version Control</h3>
+                        <p>GitHub is built on Git, a distributed version control system that tracks changes in your code over time. Every change is recorded with a unique commit hash.</p>
+                    </div>
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Collaboration</h3>
+                        <p>Teams can work together on projects using features like pull requests, code reviews, and issue tracking to maintain code quality.</p>
+                    </div>
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud Storage</h3>
+                        <p>Your code is stored securely in the cloud, accessible from anywhere with an internet connection. No more "it works on my machine" problems!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title">Key GitHub Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <i class="fas fa-code-branch"></i>
+                            <h3>Branches</h3>
+                        </div>
+                        <p>Create separate lines of development for features, bug fixes, or experiments without affecting the main codebase.</p>
+                        <div class="feature-demo">
+                            <div class="branch-visualization">
+                                <div class="branch main-branch">
+                                    <span class="branch-name">main</span>
+                                    <div class="commit" data-commit="A">A</div>
+                                    <div class="commit" data-commit="B">B</div>
+                                </div>
+                                <div class="branch feature-branch">
+                                    <span class="branch-name">feature/new-login</span>
+                                    <div class="commit" data-commit="C">C</div>
+                                    <div class="commit" data-commit="D">D</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <i class="fas fa-code-merge"></i>
+                            <h3>Pull Requests</h3>
+                        </div>
+                        <p>Propose changes to a repository. Team members can review, discuss, and approve changes before they're merged.</p>
+                        <div class="feature-demo">
+                            <div class="pr-demo">
+                                <div class="pr-header">
+                                    <span class="pr-title">Add user authentication</span>
+                                    <span class="pr-status open">Open</span>
+                                </div>
+                                <div class="pr-details">
+                                    <span class="pr-author">@developer</span>
+                                    <span class="pr-files">+15 -3 files changed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <i class="fas fa-bug"></i>
+                            <h3>Issues</h3>
+                        </div>
+                        <p>Track bugs, feature requests, and tasks. Use labels, milestones, and assignees to organize work.</p>
+                        <div class="feature-demo">
+                            <div class="issue-demo">
+                                <div class="issue-item">
+                                    <span class="issue-number">#123</span>
+                                    <span class="issue-title">Fix login button styling</span>
+                                    <span class="issue-label bug">bug</span>
+                                </div>
+                                <div class="issue-item">
+                                    <span class="issue-number">#124</span>
+                                    <span class="issue-title">Add dark mode support</span>
+                                    <span class="issue-label enhancement">enhancement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-header">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Actions (CI/CD)</h3>
+                        </div>
+                        <p>Automate workflows with GitHub Actions. Build, test, and deploy your code automatically.</p>
+                        <div class="feature-demo">
+                            <div class="action-demo">
+                                <div class="action-step">
+                                    <i class="fas fa-check-circle success"></i>
+                                    <span>Build</span>
+                                </div>
+                                <div class="action-step">
+                                    <i class="fas fa-check-circle success"></i>
+                                    <span>Test</span>
+                                </div>
+                                <div class="action-step">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <span>Deploy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="section">
+            <div class="container">
+                <h2 class="section-title">GitHub Workflow</h2>
+                <div class="workflow-container">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Clone Repository</h3>
+                            <p>Get a local copy of the project</p>
+                            <div class="code-block">
+                                <code>git clone https://github.com/user/repo.git</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Create Branch</h3>
+                            <p>Work on a new feature or fix</p>
+                            <div class="code-block">
+                                <code>git checkout -b feature/new-feature</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Make Changes</h3>
+                            <p>Edit files and commit changes</p>
+                            <div class="code-block">
+                                <code>git add .<br>git commit -m "Add new feature"</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Push & PR</h3>
+                            <p>Push changes and create pull request</p>
+                            <div class="code-block">
+                                <code>git push origin feature/new-feature</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="section">
+            <div class="container">
+                <h2 class="section-title">Live GitHub Demo</h2>
+                <div class="demo-container">
+                    <div class="demo-sidebar">
+                        <h3>Repository Structure</h3>
+                        <div class="file-tree" id="file-tree">
+                            <div class="folder">
+                                <i class="fas fa-folder"></i>
+                                <span>my-project</span>
+                                <div class="folder-contents">
+                                    <div class="file">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>index.html</span>
+                                    </div>
+                                    <div class="file">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>styles.css</span>
+                                    </div>
+                                    <div class="file">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>script.js</span>
+                                    </div>
+                                    <div class="file">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>README.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-main">
+                        <div class="demo-tabs">
+                            <button class="tab-btn active" data-tab="commits">Commits</button>
+                            <button class="tab-btn" data-tab="branches">Branches</button>
+                            <button class="tab-btn" data-tab="issues">Issues</button>
+                        </div>
+                        <div class="demo-content">
+                            <div id="commits-tab" class="tab-content active">
+                                <div class="commit-list" id="commit-list">
+                                    <!-- Commits will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div id="branches-tab" class="tab-content">
+                                <div class="branch-list" id="branch-list">
+                                    <!-- Branches will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div id="issues-tab" class="tab-content">
+                                <div class="issue-list" id="issue-list">
+                                    <!-- Issues will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="commands" class="section">
+            <div class="container">
+                <h2 class="section-title">Essential Git Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-category">
+                        <h3>Basic Commands</h3>
+                        <div class="command-list">
+                            <div class="command-item">
+                                <code>git init</code>
+                                <span>Initialize a new repository</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git clone &lt;url&gt;</code>
+                                <span>Clone a repository</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git status</code>
+                                <span>Check repository status</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git add &lt;file&gt;</code>
+                                <span>Stage changes</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git commit -m "message"</code>
+                                <span>Commit changes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="command-category">
+                        <h3>Branching</h3>
+                        <div class="command-list">
+                            <div class="command-item">
+                                <code>git branch</code>
+                                <span>List branches</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git checkout -b &lt;branch&gt;</code>
+                                <span>Create and switch to branch</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git merge &lt;branch&gt;</code>
+                                <span>Merge branch</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git branch -d &lt;branch&gt;</code>
+                                <span>Delete branch</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="command-category">
+                        <h3>Remote Operations</h3>
+                        <div class="command-list">
+                            <div class="command-item">
+                                <code>git push origin &lt;branch&gt;</code>
+                                <span>Push to remote</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git pull origin &lt;branch&gt;</code>
+                                <span>Pull from remote</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git fetch</code>
+                                <span>Fetch remote changes</span>
+                            </div>
+                            <div class="command-item">
+                                <code>git remote -v</code>
+                                <span>List remotes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="best-practices" class="section">
+            <div class="container">
+                <h2 class="section-title">Best Practices</h2>
+                <div class="practices-grid">
+                    <div class="practice-card">
+                        <div class="practice-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Meaningful Commit Messages</h3>
+                        <p>Write clear, descriptive commit messages that explain what and why, not how.</p>
+                        <div class="example">
+                            <strong>Good:</strong> "Add user authentication with JWT tokens"<br>
+                            <strong>Bad:</strong> "Fix stuff"
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3>Feature Branches</h3>
+                        <p>Always create a new branch for each feature or bug fix. Never work directly on main.</p>
+                        <div class="example">
+                            <code>git checkout -b feature/user-dashboard</code>
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Code Reviews</h3>
+                        <p>Always have someone else review your code before merging. Use pull requests for all changes.</p>
+                        <div class="example">
+                            Create PR → Request review → Address feedback → Merge
+                        </div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>README Documentation</h3>
+                        <p>Keep your README.md updated with setup instructions, project description, and usage examples.</p>
+                        <div class="example">
+                            Include: Description, Installation, Usage, Contributing, License
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://docs.github.com" target="_blank">GitHub Documentation</a></li>
+                        <li><a href="https://git-scm.com/doc" target="_blank">Git Documentation</a></li>
+                        <li><a href="https://github.com/features" target="_blank">GitHub Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Learning</h3>
+                    <ul>
+                        <li><a href="https://learngitbranching.js.org" target="_blank">Learn Git Branching</a></li>
+                        <li><a href="https://try.github.io" target="_blank">Try Git</a></li>
+                        <li><a href="https://github.com/skills" target="_blank">GitHub Skills</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Created for educational purposes</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GitHub Deep Dive Guide. Educational content for learning version control.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
